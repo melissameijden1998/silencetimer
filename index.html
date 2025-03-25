@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>10-Minuten Stilte Timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        #timer {
+            font-size: 3em;
+            margin: 20px 0;
+            color: #2e7d32;
+        }
+        button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>10-Minuten Stilte Challenge</h1>
+    <div id="timer">10:00</div>
+    <button onclick="startTimer()">Start Timer</button>
+
+    <script>
+        function startTimer() {
+            let timeLeft = 600; // 10 minuten in seconden
+            const timerElement = document.getElementById('timer');
+            
+            const interval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    timerElement.textContent = "Tijd is om!";
+                } else {
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
